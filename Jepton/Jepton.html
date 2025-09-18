@@ -1,0 +1,435 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jeton — Clone </title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    html,body 
+    { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+
+   
+    @keyframes floatIn { 0% { opacity: 0;
+         transform: translateY(12px) scale(.995);
+        } 100% { opacity: 1;
+             transform: none;
+             } }
+    .animate-float { animation: floatIn .7s cubic-bezier(.22,.9,.32,1) both; 
+    }
+
+    @keyframes bounceY { 
+        0%,100%{ transform: translateY(0)
+        }
+         50%{ transform: translateY(8px)} }
+    .animate-bounce-slow { 
+        animation: bounceY 1.8s infinite ease-in-out;
+     }
+
+   
+    .reveal { 
+        opacity: 0; transform: translateY(18px);
+         transition: all .6s cubic-bezier(.22,.9,.32,1);
+         }
+    .reveal.show {
+         opacity: 1; 
+        transform: none; 
+    }
+
+    .slide { 
+        display: none;
+     }
+    .slide.is-active {
+         display: block;
+         }
+
+    .glow {
+         background: linear-gradient(90deg, rgba(99,102,241,0.12), rgba(79,70,229,0.08));
+         }
+
+   
+    .avatar { 
+        width:56px; 
+        height:56px; 
+        border-radius:9999px; 
+        display:inline-flex; 
+        align-items:center;
+         justify-content:center; 
+         font-weight:600; 
+        }
+
+   
+    .container { 
+        max-width:1100px;
+     }
+
+   
+    :focus {
+         outline: 3px solid rgba(99,102,241,.18);
+          outline-offset: 3px; 
+        }
+
+  </style>
+</head>
+<body class="bg-gray-50 text-slate-900">
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <div class="container mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md bg-indigo-600 text-white flex items-center justify-center font-extrabold">J</div>
+        <span class="font-semibold text-lg">Jeton</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-700">
+        <a href="#products" class="hover:underline">Products</a>
+        <a href="#pricing" class="hover:underline">Pricing</a>
+        <a href="#support" class="hover:underline">Support</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="loginBtn" class="text-sm px-3 py-2 rounded-md hover:bg-gray-100">Log in</button>
+        <button class="text-sm px-4 py-2 rounded-md bg-indigo-600 text-white hover:shadow-lg transform transition hover:-translate-y-0.5">Get started</button>
+
+      
+        <button id="navToggle" class="md:hidden ml-2 p-2 rounded-md focus-visible:ring-2 focus-visible:ring-indigo-200">
+          <svg width="22" 
+          height="22" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor"
+           stroke-width="1.5" 
+           stroke-linecap="round" 
+           stroke-linejoin="round">
+           <path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="md:hidden px-6 pb-4 hidden">
+      <div class="flex flex-col gap-3">
+        <a href="#" class="text-sm">Products</a>
+    <a href="#" class="text-sm">Pricing</a>
+        <a href="#" class="text-sm">Support</a>
+        <a href="#" class="text-sm text-indigo-600 font-medium">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-10">
+    <section class="bg-white py-16">
+      <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+
+        <div>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 animate-float">One app for all your payments</h1>
+          <p class="text-lg text-slate-600 mb-6 reveal">A single account to send, receive, convert and manage multiple currencies. Business tools, cards, and fast payouts — all in one place.</p>
+
+          <div class="flex gap-3 items-center">
+            <a class="inline-flex items-center gap-3 px-5 py-3 rounded-md bg-indigo-600 text-white font-medium hover:shadow-lg transform transition hover:-translate-y-0.5" href="#">
+              <svg width="18" height="18"
+               viewBox="0 0 24 24" 
+               fill="none" 
+               class="opacity-90">
+               <path d="M12 2v20M2 12h20" 
+               stroke="currentColor" 
+               stroke-width="1.6"
+                stroke-linecap="round" 
+                stroke-linejoin="round"/></svg>
+              Create account
+            </a>
+            <a class="inline-flex items-center gap-2 px-4 py-3 rounded-md border border-gray-200 hover:bg-gray-50" href="#">Learn more</a>
+          </div>
+
+          <div class="mt-6 flex gap-3 items-center">
+           
+            <a href="https://apps.apple.com/" target="_blank">
+    <img 
+      src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
+      alt="Download on the App Store" 
+      class="h-10"
+    />
+  </a>
+            <a href="https://play.google.com/store" target="_blank">
+    <img 
+      src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+      alt="Get it on Google Play" 
+      class="h-10"
+    />
+  </a>
+          </div>
+
+        </div>
+        <div class="relative">
+          <div class="rounded-2xl shadow-lg p-6 glow">
+            <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-6">
+              <div class="flex justify-between items-center mb-4">
+                <div>
+                  <div class="text-sm text-slate-500">Balance</div>
+                  <div class="text-2xl font-bold">€ 12,340.20</div>
+                </div>
+                <div class="text-sm text-slate-600">EUR</div>
+              </div>
+
+              <div class="h-36 rounded-lg bg-white flex items-center justify-center border border-dashed border-indigo-100">[Card / Dashboard Mockup]</div>
+            </div>
+          </div>
+          <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+            <div class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm animate-bounce-slow">
+              <svg width="18" 
+              height="18" 
+              viewBox="0 0 24 24"
+               fill="none">
+               <path d="M12 5v14M5 12h14" 
+               stroke="#6B7280" 
+               stroke-width="1.5" 
+               stroke-linecap="round" 
+               stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-12">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Multi-currency accounts -->
+      <div class="p-6 bg-white rounded-xl shadow-sm reveal">
+        <div class="flex items-start gap-4 mb-3">
+          <div class="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+            <!-- Credit Card Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.25 8.25h19.5m-16.5 4.5h.008v.008H5.25v-.008zm3 0h6v.008h-6v-.008zM2.25 6A2.25 2.25 0 014.5 3.75h15a2.25 2.25 0 012.25 2.25v12a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 18V6z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold">Multi-currency accounts</h3>
+            <p class="text-sm text-slate-600">Hold and convert dozens of currencies with transparent fees.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exchange & convert -->
+      <div class="p-6 bg-white rounded-xl shadow-sm reveal">
+        <div class="flex items-start gap-4 mb-3">
+          <div class="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+            <!-- Refresh / Exchange Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 4v6h6M20 20v-6h-6M5 19A9 9 0 1119 5" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold">Exchange & convert</h3>
+            <p class="text-sm text-slate-600">Competitive FX rates and instant conversions inside your account.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 bg-white rounded-xl shadow-sm reveal">
+        <div class="flex items-start gap-4 mb-3">
+          <div class="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+          
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-7.5-9h9a1.5 1.5 0 011.5 1.5V6H7.5V4.5A1.5 1.5 0 019 3zM4.5 6h15a1.5 1.5 0 011.5 1.5v12A1.5 1.5 0 0119.5 21h-15A1.5 1.5 0 013 19.5v-12A1.5 1.5 0 014.5 6z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold">Business tools</h3>
+            <p class="text-sm text-slate-600">Invoices, payouts, local receiving details and payment links.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <section class="py-12 bg-gradient-to-b from-white to-gray-50">
+      <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+        <div class="reveal">
+          <h2 class="text-2xl font-bold mb-3">Jeton Card — spend anywhere</h2>
+          <p class="text-slate-600 mb-4">Get a physical or virtual card connected to your account. Freeze/unfreeze, set limits, and track spend in real time.</p>
+          <ul class="text-sm text-slate-600 list-disc ml-5 space-y-1">
+            <li>Contactless payments</li>
+            <li>Instant freeze & controls</li>
+            <li>Multi-currency spending</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="rounded-lg p-6 bg-white shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-sm text-slate-500">Card</div>
+              <div class="text-sm">**** 1234</div>
+            </div>
+            <div class="h-40 rounded-lg bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center">[Card preview]</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12">
+      <div class="container mx-auto px-6">
+
+        <div class="bg-white rounded-xl p-6 mb-8 shadow-sm reveal">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-sm text-slate-500">Trusted by</div>
+              <div class="text-3xl font-bold flex items-center gap-3"> <span id="usersCount">0</span> <span class="text-sm text-slate-500">+ users</span></div>
+            </div>
+            <div class="flex gap-4 items-center text-sm text-slate-600">
+              <div class="p-2 border rounded">ISO</div>
+              <div class="p-2 border rounded">EBA</div>
+              <div class="p-2 border rounded">FT 1000</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-sm reveal">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-semibold">Hear it from our clients</h3>
+            <div class="flex items-center gap-2">
+             <button id="prevBtn" class="p-2 rounded-md hover:bg-gray-100">
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       fill="none" viewBox="0 0 24 24" stroke="currentColor" 
+       class="w-5 h-5">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M15 19l-7-7 7-7" />
+  </svg>
+</button>
+<button id="nextBtn" class="p-2 rounded-md hover:bg-gray-100">
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       fill="none" viewBox="0 0 24 24" stroke="currentColor" 
+       class="w-5 h-5">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M9 5l7 7-7 7" />
+  </svg>
+</button>
+            </div>
+          </div>
+
+          <div id="slider" class="relative">
+            <div class="slide is-active p-4">
+              <div class="flex items-center gap-4">
+                <div class="avatar bg-indigo-100 text-indigo-700">AS</div>
+                <div>
+                  <div class="font-medium">Alex Smith</div>
+                  <div class="text-sm text-slate-600">Product Manager</div>
+                </div>
+              </div>
+              <p class="mt-3 text-slate-700">"Jeton simplified our cross-border payouts and saved us time on reconciliation."</p>
+            </div>
+
+            <div class="slide p-4">
+              <div class="flex items-center gap-4">
+                <div class="avatar bg-indigo-100 text-indigo-700">RM</div>
+                <div>
+                  <div class="font-medium">Rita M.</div>
+                  <div class="text-sm text-slate-600">Founder</div>
+                </div>
+              </div>
+              <p class="mt-3 text-slate-700">"Fast onboarding and the card features are great for travel and business spend."</p>
+            </div>
+
+            <div class="slide p-4">
+              <div class="flex items-center gap-4">
+                <div class="avatar bg-indigo-100 text-indigo-700">KH</div>
+                <div>
+                  <div class="font-medium">K. Hernandez</div>
+                  <div class="text-sm text-slate-600">Finance Lead</div>
+                </div>
+              </div>
+              <p class="mt-3 text-slate-700">"Reliable FX and useful business tools. The dashboard helps our accounting team."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+    <footer class="bg-white border-t mt-12">
+      <div class="container mx-auto px-6 py-8">
+        <div class="flex flex-col md:flex-row md:justify-between gap-6">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-md bg-indigo-600 text-white flex items-center justify-center font-extrabold">J</div>
+              <div class="font-semibold">Jeton</div>
+            </div>
+            <div class="text-sm text-slate-600">© 2025 Jeton — visual clone for assignment</div>
+          </div>
+          <div class="flex gap-8 text-sm text-slate-600">
+            <div class="flex flex-col gap-2">
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+            </div>
+            <div class="flex flex-col gap-2">
+              <a href="#">Support</a>
+              <a href="#">Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle?.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+    const observer = new IntersectionObserver((entries)=> {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+
+    },{ threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function animateCounter(el, end, duration=1400){      
+      let start=0; let startTime=null; const step = (ts) => {
+        if(!startTime) startTime = ts;
+        const progress = Math.min((ts - startTime) / duration, 1);
+        const value = Math.floor(progress * end);
+        el.textContent = value.toLocaleString();
+        if(progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    const usersCountEl = document.getElementById('usersCount');
+    if(usersCountEl){
+      const cObs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ animateCounter(usersCountEl, 1000000, 1800); cObs.unobserve(usersCountEl); }
+        });
+      }, { threshold: 0.2 });
+      cObs.observe(usersCountEl);
+    }
+    (function(){
+      const slides = Array.from(document.querySelectorAll('#slider .slide'));
+      let idx = 0; let timer = null;
+      function show(i){
+        slides.forEach((s, j)=> s.classList.toggle('is-active', j===i));
+      }
+      function next(){ idx = (idx + 1) % slides.length; show(idx); }
+      function prev(){ idx = (idx - 1 + slides.length) % slides.length; show(idx); }
+
+      document.getElementById('nextBtn')?.addEventListener('click', ()=>{ next(); resetTimer(); });
+      document.getElementById('prevBtn')?.addEventListener('click', ()=>{ prev(); resetTimer(); });
+
+      function resetTimer(){ clearInterval(timer); timer = setInterval(next, 3500); }
+      if(slides.length){ show(0); timer = setInterval(next, 3500); }
+    })();
+
+    document.getElementById('prevBtn')?.addEventListener('keydown', (e)=>{ if(e.key==='Enter') e.target.click(); });
+    document.getElementById('nextBtn')?.addEventListener('keydown', (e)=>{ if(e.key==='Enter') e.target.click(); });
+
+  </script>
+</body>
+</html>
